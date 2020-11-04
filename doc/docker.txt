@@ -1,0 +1,106 @@
+
+ÍGY HASZNÁLD
+============
+sudo docker ...
+
+
+ALAP UTASÍTÁSOK
+===============
+
+
+docker search debian
+- debian csomagok keresése
+
+docker install debian
+- debian nevű csomagok telepítése
+
+docker images
+- a letöltött konténerek listája
+
+docker rmi name
+- letöltött konténer törlés
+- -f opció a mindenképpeni törlés
+
+docker ps
+- futó docker konténerek
+
+docker ps -a
+- minden docker konténer
+
+docker run name
+- létrehozás letöltött konténerből és indítás
+
+docker start aliasname
+- indítás
+
+docker stop aliasname
+- leállítás
+
+docker start -it debian
+- debian konténer indítása és bash belépés a konténeren belül
+
+docker run --name debian -p 8080:80 -it debian bash
+- debian konténer létrehozása és indítása, port átirányításssal
+
+
+
+HÁLÓZAT
+=======
+
+docker network create --subnet=172.18.0.0/16 mynet
+- mynet hálózat létrehozása konténerek számára
+
+docker network rm mynet
+- mynet hálózat törése
+
+docker network connect --ip 172.18.0.22 debian
+- debian konténer hálózathoz kapcsolása
+
+docker network disconnect debian
+- debian konténer hálózatról lekapcsolása
+
+docker start -i debian
+- deiban indítása shell-script-tel
+
+docker run --name debian --net mynet -h myhostname --ip 172.18.0.22 -it debian bash
+- mynet hálózaton debian konténer létrehozása és indítása
+
+
+
+
+MAPPA MAP
+=========
+
+docker run -dit --name apache2 -p 8080:80 -v "$PWD":/usr/local/apache2/htdocs/ httpd
+- aktuális könyvtár a /usr/lo... helyére, localhost:8080 porton válaszol
+
+
+
+
+DOCKER IMAGE LÉTREHOZÁSA
+========================
+
+mkdir dockerprojects
+cd dockerprojects
+
+Szerkesztés: 
+Dockerfile
+
+Tartalma:
+FROM debian
+MAINTAINER peter version: 0.1
+RUN apt-get update && apt-get install -y apache2 && apt-get clean && rm -rf /var/lib/apt/lists/*
+ENV APACHE_RUN_USER www-data
+ENV APACHE_RUN_GROUP www-data
+ENV APACHE_LOG_DIR /var/log/apache2
+EXPOSE 80
+CMD ["/usr/sbin/apache2", "-D", "FOREGROUND"]
+
+- telepíti az alap debian image-be az apache-ot
+
+Létrehozás:
+sudo docker build -t apache .
+
+Indítás:
+sudo docker run -d apache
+
