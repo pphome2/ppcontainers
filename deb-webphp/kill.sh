@@ -1,19 +1,23 @@
 #!/bin/sh
 
-f=process.txt
+f="process.txt"
+n=`pwd | awk 'BEGIN {FS="/"};{printf $NF }'`
+p=`sudo docker ps | grep "$n" | awk 'BEGIN {FS=" "};{print $1}'`
+
 if test -f "$f"; then
-	if [ -s file.name ] ; then
-		n=`pwd | awk 'BEGIN {FS="/"};{printf $NF }'`
-		p=`sudo docker ps | grep "$n" | awk 'BEGIN {FS=" "};{print $1}'`
-		echo $p
-		sudo docker kill $p
+	if [ -s $f ] ; then
+		if [ ! -z "$p" ]; then
+			sudo docker kill $p
+		fi
 	else
 		p=`cat $f`
-		sudo docker kill $p
-		rm $f
+		if [ ! -z "$p" ]; then
+			sudo docker kill $p
+		fi
 	fi
+	rm $f
 else
-	n=`pwd | awk 'BEGIN {FS="/"};{printf $NF }'`
-	p=`sudo docker ps | grep "$n" | awk 'BEGIN {FS=" "};{print $1}'`
-	sudo docker kill $p
+	if [ ! -z "$p" ]; then
+		sudo docker kill $p
+	fi
 fi
