@@ -16,6 +16,7 @@ RUN apt-get install -y procmail
 
 # Dovecot
 RUN apt-get install -y dovecot-core
+RUN apt-get install -y dovecot-imapd
 
 # Clamav
 RUN apt-get install -y clamav
@@ -24,10 +25,10 @@ RUN apt-get install -y clamsmtp
 # Spamassassin
 RUN apt-get install -y spamassassin
 
-RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+# Rsyslog
+RUN apt-get install -y rsyslog
 
-#RUN ln -sf /proc/self/fd/1 /var/log/apache2/access.log
-#RUN ln -sf /proc/self/fd/1 /var/log/apache2/error.log
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 EXPOSE 25 587 465 
 EXPOSE 143 993

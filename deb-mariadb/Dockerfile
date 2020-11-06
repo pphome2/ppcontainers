@@ -16,7 +16,7 @@ EXPOSE 3306
 COPY start.sh /start.sh
 RUN chmod +x /start.sh
 
-COPY server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
+COPY conf/server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
 
 ENTRYPOINT ["/start.sh"]
 

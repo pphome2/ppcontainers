@@ -27,12 +27,10 @@ ENV APACHE_RUN_USER www-data
 ENV APACHE_RUN_GROUP www-data
 ENV APACHE_LOG_DIR /var/log/apache2
 
-#RUN ln -sf /dev/stderr /var/log/apache2/access.log
-#RUN ln -sf /dev/stderr /var/log/apache2/error.log
-
-RUN ln -sf /proc/self/fd/1 /var/log/apache2/access.log
-RUN ln -sf /proc/self/fd/1 /var/log/apache2/error.log
-
+# RUN ln -sf /dev/stderr /var/log/apache2/access.log
+# RUN ln -sf /dev/stderr /var/log/apache2/error.log
+# RUN ln -sf /proc/self/fd/1 /var/log/apache2/access.log
+# RUN ln -sf /proc/self/fd/1 /var/log/apache2/error.log
 
 EXPOSE 80 443
 
