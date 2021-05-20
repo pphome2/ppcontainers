@@ -1,6 +1,7 @@
 # ppdockertest
-Docker konténer készítés tesztelése.
+Docker/Podman konténer készítés tesztelése.
 
+Podman használata esetén add ki: `alias docker=podman` utasítást.
 
 ## deb-mariadb
 

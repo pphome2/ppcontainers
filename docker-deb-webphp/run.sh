@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 www="/home/peter/public_html"
 

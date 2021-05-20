@@ -1,0 +1,14 @@
+
+Console belépés a konténerben
+-----------------------------
+
+grant all privileges on *.* to 'admin'@'192.168.16.%' identified by 'admin' with grant option;
+
+- admin felhasználó ip tartományból admin jelszóval beléphet
+
+
+Kliens gépen
+------------
+
+mariadb -h ip_address -u admin -p
+
