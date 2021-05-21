@@ -1,10 +1,30 @@
+server.cnf
+----------
 
-Console belépés a konténerben
------------------------------
+bind_address = 0.0.0.0
+- minden ip-ről engedi a kapcsolatot
+
+
+Kapcsolatok engedélyezése
+-------------------------
 
 grant all privileges on *.* to 'admin'@'192.168.16.%' identified by 'admin' with grant option;
 
 - admin felhasználó ip tartományból admin jelszóval beléphet
+
+!!! Engedélyezni kell a kapcsolatot a belső konténer ip tartományra is, mert
+!!! csak így lehet kapcsolódni másik konténerből
+
+grant all privileges on *.* to 'admin'@'172.16.16.%' identified by 'admin' with grant option;
+
+- admin felhasználó ip tartományból admin jelszóval beléphet
+
+
+Console belépés a konténerben
+-----------------------------
+
+maraidb
+- helyi belépés engedélyezett
 
 
 Kliens gépen
