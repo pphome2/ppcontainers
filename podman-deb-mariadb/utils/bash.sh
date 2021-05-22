@@ -5,8 +5,9 @@ p=`sudo podman ps | grep "$n" | awk 'BEGIN {FS=" "};{print $1}'`
 
 if [ ! -z "$p" ]; then
 	echo $p
-	sudo podman cp $p:/var/log/mysql/error.log .
-
+	sudo podman exec -t -i $p /bin/bash
 else
 	echo Nem fut.
 fi
+
+#

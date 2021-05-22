@@ -22,6 +22,10 @@ RUN apt-get install -y lynx
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 RUN a2enmod php7.3
+RUN a2enmod ssl
+
+COPY conf/80.conf /etc/apache2/sites-enabled/80.conf
+COPY conf/443.conf /etc/apache2/sites-enabled/443.conf
 
 ENV APACHE_RUN_USER www-data
 ENV APACHE_RUN_GROUP www-data
@@ -34,9 +38,9 @@ ENV APACHE_LOG_DIR /var/log/apache2
 
 EXPOSE 80 443
 
-COPY start.sh /start.sh
-RUN chmod +x /start.sh
+COPY init/start.sh /usr/local/bin/start.sh
+RUN chmod +x /usr/local/bin/start.sh
 
-ENTRYPOINT ["/start.sh"]
+ENTRYPOINT ["/usr/local/bin/start.sh"]
 
 #CMD ["/bin/bash"]

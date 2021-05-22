@@ -13,11 +13,17 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 EXPOSE 3306
 
-COPY start.sh /start.sh
-RUN chmod +x /start.sh
+COPY init/start.sh /usr/local/bin/start.sh
+COPY init/sqlinit.sh /usr/local/bin/sqlinit.sh
+COPY init/conf.sql /usr/local/bin/conf.sql
+COPY init/sqlbackup.sh /usr/local/bin/sqlbackup.sh
+
+RUN chmod +x /usr/local/bin/start.sh
+RUN chmod +x /usr/local/bin/sqlinit.sh
+RUN chmod +x /usr/local/bin/sqlbackup.sh
 
 COPY conf/server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
 
-ENTRYPOINT ["/start.sh"]
+ENTRYPOINT ["/usr/local/bin/start.sh"]
 
 #CMD ["/bin/bash"]

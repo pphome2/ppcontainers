@@ -1,8 +1,9 @@
 #!/bin/sh
 
-pid=`podman images | grep mariadb | awk {'print '}`
+pid=`podman images | grep webphp | awk {'print '}`
 
 if [ ! -z $pid ]; then
 	podman rmi $pid
 fi
 
+#
