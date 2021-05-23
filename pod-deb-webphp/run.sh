@@ -39,7 +39,7 @@ else
 		ln -s $www /var/www
 		echo WWW2 ok.
 	fi
-	sudo podman run --name pod-deb-webphp -p 80:80 -p 443:443 \
+	sudo podman run --name "$n" -p 80:80 -p 443:443 \
 			--mount type=bind,source=$www,target=/var/www/html \
 			--mount type=bind,source=$(pwd)/log,target=/var/log/apache2 \
 			$n &

@@ -11,7 +11,7 @@ else
 	echo Backup ok.
 fi
 
-podman exec pod-deb-mariadb /usr/local/bin/sqlbackup.sh
+podman exec "$n" /usr/local/bin/sqlbackup.sh
 echo SQL backup ok.
 
 d=`date +"%y%m%d"`
