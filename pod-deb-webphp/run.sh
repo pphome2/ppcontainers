@@ -1,7 +1,7 @@
 #!/bin/bash
 
-#www="/home/peter/public_html"
-www=$(pwd)/www
+www="/home/peter/public_html"
+#www=$(pwd)/www
 
 f="process.txt"
 
@@ -20,12 +20,15 @@ else
 		echo Log ok.
 	fi
 	if [ -d /var/log/apache2 ]; then
-		echo Log2 ok.
+		rm /var/log/apache2/*
+		rmdir /var/log/apache2
 	else
-		ln -s $(pwd)/log /var/log/apache2
-		#chmod +w $(pwd)/log
-		echo Log2 ok.
+		if [ -f /var/log/apache2 ]; then
+			rm /var/log/apache2
+		fi
 	fi
+	ln -s $(pwd)/log /var/log/apache2
+	echo Log2 ok.
 	if [ -d $www ]; then
 		echo WWW ok.
 	else
@@ -36,9 +39,13 @@ else
 	if [ -d /var/www ]; then
 		echo WWW2 ok.
 	else
-		ln -s $www /var/www
+		mkdir /var/www
 		echo WWW2 ok.
 	fi
+	if [ -f /var/www/html ]; then
+		rm /var/www/html
+	fi
+	ln -s $www /var/www/html
 	sudo podman run --name "$n" -p 80:80 -p 443:443 \
 			--mount type=bind,source=$www,target=/var/www/html \
 			--mount type=bind,source=$(pwd)/log,target=/var/log/apache2 \

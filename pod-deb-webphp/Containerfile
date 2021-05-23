@@ -26,6 +26,7 @@ RUN a2enmod ssl
 
 COPY conf/80.conf /etc/apache2/sites-enabled/80.conf
 COPY conf/443.conf /etc/apache2/sites-enabled/443.conf
+COPY conf/.htpasswd /etc/apache2/.htpasswd
 
 ENV APACHE_RUN_USER www-data
 ENV APACHE_RUN_GROUP www-data

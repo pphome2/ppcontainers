@@ -10,7 +10,7 @@ if [ ! -z "$p" ]; then
 	echo Már fut.
 else
 	if [ -d $db ]; then
-		rm -r $db/*
+		#rm -r $db/*
 		echo DB ok.
 	else
 		mkdir $db
@@ -32,11 +32,11 @@ else
 		echo Log ok.
 	fi
 	if [ -d /var/log/mysql ]; then
-		echo Log2 ok.
-	else
-		ln -s $(pwd)/log /var/log/mysql
+		rm /var/log/mysql/*
+		rmdir /var/log/mysql
 		echo Log2 ok.
 	fi
+	ln -s $(pwd)/log /var/log/mysql
 	sudo podman run --name "$n" -p 3306:3306 \
 			--mount type=bind,source=$(pwd)/log,target=/var/log/mysql \
 			--mount type=bind,source=$(pwd)/db,target=/var/lib/mysql \
@@ -51,3 +51,5 @@ else
 		echo Nem indult el.
 	fi
 fi
+
+#
