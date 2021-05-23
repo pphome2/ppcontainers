@@ -1,29 +1,34 @@
 #!/bin/bash
 
-#cd /var/lib/mysql
+d=`pwd`
+cd /var/lib/mysql
 
 s=$IFS
 
 for i in *.sql; do
 	IFS='-'
 	read -a n <<< "$i"
-	n2=${n[1]}
+	n2=${n[2]}
 	IFS='.'
 	read -a n <<< "$n2"
 	n2=${n[0]}
+	#echo $n2
 	if [ ! -z $n2 ]; then
 		if [ -d $n2 ]; then
-			echo $n2
-			mariadb "delete database $n2;create database $n2;exit"
+			echo Adatbázis: $n2
+			mariadb -e "drop database $n2;"
+			mariadb -e "create database $n2;"
 		else
-			echo $n2
-			mariadb "create database $n2;exit"
+			echo Adatbázis: $n2
+			mariadb -e "create database $n2;"
 		fi
-		#maridb $n2 < $i
+		echo Adatok: $n2 - $i
+		mariadb $n2 < "$i"
 	fi
 done
 
 IFS=$s
 
-#
+cd $d
 
+#

@@ -10,7 +10,7 @@ if [ ! -z "$p" ]; then
 	echo Már fut.
 else
 	if [ -d $db ]; then
-		#rm -r $db/*
+		rm -r $db/*
 		echo DB ok.
 	else
 		mkdir $db
@@ -24,7 +24,7 @@ else
 		echo DB2 ok.
 	fi
 	if [ -d $(pwd)/log ]; then
-		rm -r $(pwd)/log/*
+		rm -r $(pwd)/log/* > /dev/null
 		echo Log ok.
 	else
 		mkdir $(pwd)/log
@@ -32,8 +32,8 @@ else
 		echo Log ok.
 	fi
 	if [ -d /var/log/mysql ]; then
-		rm /var/log/mysql/*
-		rmdir /var/log/mysql
+		rm /var/log/mysql/* 2> /dev/null
+		rmdir /var/log/mysql 2> /dev/null
 		echo Log2 ok.
 	fi
 	ln -s $(pwd)/log /var/log/mysql
@@ -42,7 +42,7 @@ else
 			--mount type=bind,source=$(pwd)/db,target=/var/lib/mysql \
 			$n &
 	sleep 5
-	podman exec pod-deb-mariadb /usr/local/bin/sqlinit.sh
+	podman exec "$n" /usr/local/bin/sqlinit.sh
 	c=`sudo podman ps | grep "$n" | awk 'BEGIN {FS=" "};{print $1}'`
 	if [ ! -z "$c" ]; then
 		echo $c >$f
