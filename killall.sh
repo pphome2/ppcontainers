@@ -1,6 +1,6 @@
 #!/bin/sh
 
-r="kill.sh"
+r="utils/kill.sh"
 d=`pwd`
 # d="/opt/doscker"
 
