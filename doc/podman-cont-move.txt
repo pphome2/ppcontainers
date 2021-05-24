@@ -1,0 +1,18 @@
+
+Podman konténer átmozgatása/másolása másik eszközre
+===================================================
+
+podman container export név -o cél-név
+
+- műkdő konténer exportálása
+
+podman image import név
+
+- működő kp beolvasása az új eszközön
+
+podman tag képnév újnév
+
+- kép név hozzáadása
+
+Másolás után az új kép indítását ki kell egészíteni:
+--entrypoint="/usr/loal/bin/start.sh"
