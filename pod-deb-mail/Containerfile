@@ -1,0 +1,57 @@
+FROM debian
+
+MAINTAINER peter version: 0.1
+
+RUN apt-get update
+
+#RUN sudo DEBIAN_FRONTEND=noninteractive aptitude install -y -q chef
+
+# System
+RUN apt-get install -y mc
+RUN apt-get install -y aptitude
+
+# Postfix
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y postfix
+RUN apt-get install -y procmail
+
+# Dovecot
+RUN apt-get install -y dovecot-core
+RUN apt-get install -y dovecot-imapd
+
+# Clamav
+RUN apt-get install -y clamav
+RUN apt-get install -y clamsmtp
+
+# Spamassassin
+RUN apt-get install -y spamassassin
+
+# Rsyslog
+RUN apt-get install -y rsyslog
+
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+
+EXPOSE 25 587 465
+EXPOSE 143 993
+
+#COPY conf/x /etc/x
+
+COPY init/start.sh /usr/local/bin/start.sh
+COPY init/restart.sh /usr/local/bin/restart.sh
+COPY init/copyetc.sh /usr/local/bin/copyetc.sh
+COPY init/mailbackup.sh /usr/local/bin/mailbackup.sh
+COPY init/mailrestore.sh /usr/local/bin/mailrestore.sh
+
+RUN chmod +x /usr/local/bin/start.sh
+RUN chmod +x /usr/local/bin/restart.sh
+RUN chmod +x /usr/local/bin/copyetc.sh
+RUN chmod +x /usr/local/bin/mailbackup.sh
+RUN chmod +x /usr/local/bin/mailrestore.sh
+
+RUN mkdir /home/backupmail
+RUN chmod 777 /home/backupmail
+RUN mkdir /home/backupetc
+RUN /usr/local/bin/copyetc.sh
+
+ENTRYPOINT ["/usr/local/bin/start.sh"]
+
+#
