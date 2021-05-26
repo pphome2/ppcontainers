@@ -1,4 +1,7 @@
 # ppcontainers
+
+# Podman
+
 Konténer készítése, tesztelése, 'podman' konténer kezelővel.
 
 ## pod-deb-mariadb
@@ -19,15 +22,11 @@ Podman konténer készítése, tesztelése.
 
 'postfix' és 'dovecot' konténerben.
 
-## docker-deb-webphp
+## Docker
 
-Docker konténer készítése, tesztelése. Régi változat, nincs további folytatás.
-
-## docker-deb-mariadb
-
-Docker konténer készítése, tesztelése. Régi változat, nincs további folytatás.
-
-## docker-deb-mailserver
+- docker-deb-webphp
+- docker-deb-mariadb
+- docker-deb-mailserver
 
 Docker konténer készítése, tesztelése. Régi változat, nincs további folytatás.
 

@@ -40,6 +40,7 @@ else
 	sudo podman run --name "$n" -p 3306:3306 \
 			--mount type=bind,source=$(pwd)/log,target=/var/log/mysql \
 			--mount type=bind,source=$(pwd)/db,target=/var/lib/mysql \
+			--entrypoint="/usr/local/bin/start.sh" \
 			$n &
 	sleep 5
 	podman exec "$n" /usr/local/bin/sqlinit.sh

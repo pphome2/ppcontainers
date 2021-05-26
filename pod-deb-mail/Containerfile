@@ -36,13 +36,15 @@ EXPOSE 143 993
 #COPY conf/x /etc/x
 
 COPY init/start.sh /usr/local/bin/start.sh
-COPY init/restart.sh /usr/local/bin/restart.sh
+COPY init/restart.sh /usr/local/bin/servstart.sh
+COPY init/restart.sh /usr/local/bin/servstop.sh
 COPY init/copyetc.sh /usr/local/bin/copyetc.sh
 COPY init/mailbackup.sh /usr/local/bin/mailbackup.sh
 COPY init/mailrestore.sh /usr/local/bin/mailrestore.sh
 
 RUN chmod +x /usr/local/bin/start.sh
-RUN chmod +x /usr/local/bin/restart.sh
+RUN chmod +x /usr/local/bin/servstart.sh
+RUN chmod +x /usr/local/bin/servstop.sh
 RUN chmod +x /usr/local/bin/copyetc.sh
 RUN chmod +x /usr/local/bin/mailbackup.sh
 RUN chmod +x /usr/local/bin/mailrestore.sh

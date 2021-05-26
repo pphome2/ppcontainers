@@ -1,5 +1,7 @@
 #!/bin/sh
 
+d=`pwd`
+
 cd /var/lib/mysql
 
 for x in *; do
@@ -10,6 +12,8 @@ for x in *; do
 		fi
 	fi
 done
+
+cd $d
 
 #
 

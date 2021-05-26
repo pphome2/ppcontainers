@@ -40,9 +40,12 @@ ENV APACHE_LOG_DIR /var/log/apache2
 EXPOSE 80 443
 
 COPY init/start.sh /usr/local/bin/start.sh
-COPY init/restart.sh /usr/local/bin/restart.sh
+COPY init/restart.sh /usr/local/bin/servstart.sh
+COPY init/restart.sh /usr/local/bin/servstop.sh
+
 RUN chmod +x /usr/local/bin/start.sh
-RUN chmod +x /usr/local/bin/restart.sh
+RUN chmod +x /usr/local/bin/servstart.sh
+RUN chmod +x /usr/local/bin/servstop.sh
 
 ENTRYPOINT ["/usr/local/bin/start.sh"]
 

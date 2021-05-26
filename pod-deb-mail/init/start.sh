@@ -13,6 +13,8 @@ if [ ! -f /etc/clamav/clamd.conf ]; then
 	cp -r /home/backupetc/etc/clamav/* /etc/clamav
 fi
 
+service spamassassin start
+service clamd start
 service rsyslog start
 service postfix start
 service dovecot start 

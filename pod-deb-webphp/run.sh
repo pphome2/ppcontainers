@@ -49,6 +49,7 @@ else
 	sudo podman run --name "$n" -p 80:80 -p 443:443 \
 			--mount type=bind,source=$www,target=/var/www/html \
 			--mount type=bind,source=$(pwd)/log,target=/var/log/apache2 \
+			--entrypoint="/usr/local/bin/start.sh" \
 			$n &
 	sleep 5
 	c=`sudo podman ps | grep "$n" | awk 'BEGIN {FS=" "};{print $1}'`

@@ -1,9 +1,10 @@
 #!/bin/sh
 
 #mysqld --initialize
-mysql_install_db
+if [ ! -d /var/lib=mysql/mysql ]; then
+	mysql_install_db
+fi
 
 /etc/init.d/mysql start && tail -f /var/log/lastlog
-sleep 5
 
 #
