@@ -1,0 +1,13 @@
+#!/bin/bash
+
+n=`pwd | awk 'BEGIN {FS="/"};{printf $NF }'`
+p=`pwd`
+
+if [ -z "$1" ]; then
+	echo "Nincs paraméter. (név)"
+else
+	podman exec "$n" /usr/local/bin/userdel "$1"
+	echo Felhasználó törlése: rendben.
+fi
+
+#

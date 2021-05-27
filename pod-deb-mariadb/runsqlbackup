@@ -1,0 +1,29 @@
+#!/bin/sh
+
+n=`pwd | awk 'BEGIN {FS="/"};{printf $NF }'`
+p=`pwd`
+
+if [ -d $(pwd)/backup ]; then
+	echo Backup rendben.
+else
+	mkdir $(pwd)/backup
+	chmod 777 $(pwd)/backup
+	echo Backup rendben.
+fi
+
+podman exec "$n" /usr/local/bin/sqlbackup
+echo SQL mentés: rendben.
+
+d=`date +"%y%m%d"`
+#echo $d
+
+b=$(pwd)/backup
+cd $(pwd)/db
+for i in *.sql; do
+	mv $i $b/$d-$i
+	echo $d-$i
+done
+
+cd $p
+
+#

@@ -1,0 +1,9 @@
+#!/bin/bash
+
+n=`pwd | awk 'BEGIN {FS="/"};{printf $NF }'`
+p=`pwd`
+
+podman exec "$n" /usr/local/bin/mailrestore.
+echo Levelezés visszaállítás: rendben.
+
+#

@@ -1,0 +1,10 @@
+#!/bin/sh
+
+if [ -z "$2" ]; then
+	echo "Nincs paraméter. (név jelszó)"
+else
+	useradd -m -p "$2" "$1"
+	echo "$1:$2" | chpasswd
+fi
+
+#

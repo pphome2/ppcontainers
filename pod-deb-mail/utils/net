@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# Internet kapcsolat engedélyezése konténereknek
+
+sysctl -w net.ipv4.ip_forward=1
+firewall-cmd --zone=public --add-masquerade
+firewall-cmd --permanent --zone=public --add-masquerade
+
+#
+

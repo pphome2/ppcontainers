@@ -1,0 +1,10 @@
+#!/bin/sh
+
+if [ -z "$1" ]; then
+	echo "Nincs paraméter. (név)"
+else
+	deluser "$1"
+	delgroup "$1"
+fi
+
+#

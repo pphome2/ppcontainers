@@ -1,0 +1,14 @@
+#!/bin/sh
+
+p=`pwd`
+cd ..
+
+n=`pwd | awk 'BEGIN {FS="/"};{printf $NF }'`
+
+podman exec "$n" /usr/local/bin/servstop
+echo Szolgáltatás leállítása: rendben.
+
+cd $p
+
+#
+

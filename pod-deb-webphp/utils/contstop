@@ -1,0 +1,20 @@
+#!/bin/bash
+
+d=`pwd`
+cd ..
+
+n=`pwd | awk 'BEGIN {FS="/"};{printf $NF }'`
+p=`sudo podman ps | grep "$n" | awk 'BEGIN {FS=" "};{print $1}'`
+
+
+c=`sudo podman ps | grep "$n" | awk 'BEGIN {FS=" "};{print $1}'`
+if [ ! -z "$c" ]; then
+	podman stop "$n"
+	echo Leállt.
+else
+	echo Nem fut.
+fi
+
+cd $d
+
+#

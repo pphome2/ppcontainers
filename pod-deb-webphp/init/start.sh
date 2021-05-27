@@ -1,7 +1,0 @@
-#!/bin/sh
-
-rm /etc/apache2/sites-enabled/000-default.conf
-
-service apache2 start && tail -f /var/log/lastlog
-
-#
