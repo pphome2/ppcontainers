@@ -1,7 +1,9 @@
 #!/bin/sh
 
+service clamav-daemon restart
+service clamav-freshclam restart
 service spamassassin restart
-service clamd restart
+service amavis restart
 service postfix restart
 service dovecot restart
 

@@ -20,7 +20,11 @@ RUN apt-get install -y dovecot-imapd
 
 # Clamav
 RUN apt-get install -y clamav
-RUN apt-get install -y clamsmtp
+RUN apt-get install -y clamav-daemon
+#RUN apt-get install -y clamsmtp
+
+# Amavis
+RUN apt-get install -y amavisd-new
 
 # Spamassassin
 RUN apt-get install -y spamassassin

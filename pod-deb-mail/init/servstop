@@ -1,7 +1,9 @@
 #!/bin/sh
 
+service clamav-freshclam stop
+service clamav-daemon sop
 service spamassassin stop
-service clamd stop
+service amavis stop
 service postfix stop
 service dovecot stop
 

@@ -10,10 +10,13 @@ if [ ! -z "$p" ]; then
 else
 	if [ -d $(pwd)/log ]; then
 		rm $(pwd)/log/*
+		rm $(pwd)/log/clamav/*
 		echo Log rendben.
 	else
 		mkdir $(pwd)/log
 		chmod 777 $(pwd)/log
+		mkdir $(pwd)/log/clamav
+		chmod 777 $(pwd)/log/clamav
 		echo Log rendben.
 	fi
 	if [ -d $(pwd)/postfix ]; then
@@ -44,6 +47,13 @@ else
 		chmod 777 $(pwd)/spamassassin
 		echo Spamassassin rendben.
 	fi
+	if [ -d $(pwd)/amavis ]; then
+		echo Amavis rendben.
+	else
+		mkdir $(pwd)/amavis
+		chmod 777 $(pwd)/amavis
+		echo Amavis rendben.
+	fi
 	if [ -d $(pwd)/backupmail ]; then
 		echo Backupmail rendben.
 	else
@@ -59,6 +69,7 @@ else
 			--mount type=bind,source=$(pwd)/postfix,target=/etc/postfix \
 			--mount type=bind,source=$(pwd)/clamav,target=/etc/clamav \
 			--mount type=bind,source=$(pwd)/spamassassin,target=/etc/spamassassin \
+			--mount type=bind,source=$(pwd)/amavis,target=/etc/amavis \
 			--mount type=bind,source=$(pwd)/backupmail,target=/home/backupmail \
 			--mount type=bind,source=$(pwd)/log,target=/var/log \
 			--entrypoint="/usr/local/bin/start" \

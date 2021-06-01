@@ -1,0 +1,13 @@
+#!/bin/bash
+
+n=`pwd | awk 'BEGIN {FS="/"};{printf $NF }'`
+p=`pwd`
+
+if [ -z "$1" ]; then
+	echo "Nincs paraméter. (szervernév)"
+else
+	podman exec "$n" /usr/local/bin/setmailname "$1"
+	echo Beállítva: rendben.
+fi
+
+#

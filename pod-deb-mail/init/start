@@ -9,15 +9,23 @@ fi
 if [ ! -f /etc/spamassassin/local.cf ]; then
 	cp -r /home/backupetc/etc/spamassassin/* /etc/spamassassin
 fi
-if [ ! -f /etc/clamav/clamd.conf ]; then
-	cp -r /home/backupetc/etc/clamav/* /etc/clamav
+if [ ! -f /etc/amavis/conf.d/01-debian ]; then
+	cp -r /home/backupetc/etc/amavis/* /etc/amavis
 fi
 
-service spamassassin start
-service clamd start
+adduser clamav amavis
+echo "example.com" > /etc/mailname
+
 service rsyslog start
+
+freshclam
+
+service clamav-daemon start
+service clamav-freshclam start
+service spamassassin start
+service amavis start
 service postfix start
-service dovecot start 
+service dovecot start
 
 touch /var/log/lastlog
 tail -f /var/log/lastlog
