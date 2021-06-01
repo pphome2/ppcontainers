@@ -4,4 +4,5 @@ postfix
 dovecot
 spamassassin
 clamav
+amavis
 process.txt
