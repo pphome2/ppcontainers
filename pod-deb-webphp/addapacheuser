@@ -1,0 +1,13 @@
+#!/bin/bash
+
+n=`pwd | awk 'BEGIN {FS="/"};{printf $NF }'`
+p=`pwd`
+
+if [ -z "$2" ]; then
+	echo "Nincs paraméter. (név jelszó)"
+else
+	podman exec "$n" /usr/local/bin/addapacheuser "$1" "$2"
+	echo Új felhasználó: rendben.
+fi
+
+#

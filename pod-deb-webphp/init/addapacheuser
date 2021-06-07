@@ -1,0 +1,5 @@
+#!/bin/sh
+
+htpasswd -b /etc/apache2/.htpasswd "$1" "$2"
+
+#
