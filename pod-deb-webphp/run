@@ -42,7 +42,7 @@ else
 		mkdir /var/www
 		echo WWW2 rendben.
 	fi
-	if [ -f /var/www/html ]; then
+	if [ -d /var/www/html ]; then
 		rm /var/www/html
 	fi
 	ln -s $www /var/www/html
