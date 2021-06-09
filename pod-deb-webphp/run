@@ -50,6 +50,7 @@ else
 			--mount type=bind,source=$www,target=/var/www/html \
 			--mount type=bind,source=$(pwd)/log,target=/var/log/apache2 \
 			--entrypoint="/usr/local/bin/start" \
+			--log-level=error \
 			$n &
 			#--mount type=bind,source=/home/video,target=/home/video \
 	sleep 5

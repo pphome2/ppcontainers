@@ -41,6 +41,7 @@ else
 			--mount type=bind,source=$(pwd)/log,target=/var/log/mysql \
 			--mount type=bind,source=$(pwd)/db,target=/var/lib/mysql \
 			--entrypoint="/usr/local/bin/start" \
+			--log-level=error \
 			$n &
 	sleep 5
 	podman exec "$n" /usr/local/bin/sqlinit

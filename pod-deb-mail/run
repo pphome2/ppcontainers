@@ -73,6 +73,7 @@ else
 			--mount type=bind,source=$(pwd)/backupmail,target=/home/backupmail \
 			--mount type=bind,source=$(pwd)/log,target=/var/log \
 			--entrypoint="/usr/local/bin/start" \
+			--log-level=error \
 			$n &
 
 	sleep 5
