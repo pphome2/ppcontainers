@@ -10,8 +10,8 @@ cd ..
 n=`pwd | awk 'BEGIN {FS="/"};{printf $NF }'`
 
 if [ -f $IMAGE ]; then
-    $d=`date +"%Y%m%d%H%M%S"`
-    $IMAGE=`echo "$IMAGE$d" `
+    d=`date +"%Y%m%d%H%M%S"`
+    IMAGE=`echo "$IMAGE$d" `
 fi
 
 sudo podman export -o "$IMAGE" $n
