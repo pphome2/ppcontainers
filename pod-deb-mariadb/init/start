@@ -8,7 +8,7 @@ fi
 #mkdir /run/mysqld
 #chmod 777 /run/mysqld
 
-/etc/init.d/mysql start
+/etc/init.d/mariadb start
 
 tail -f /var/log/lastlog
 

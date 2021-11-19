@@ -1,5 +1,9 @@
 #!/bin/sh
 
-/etc/init.d/mysql restart
+/etc/init.d/mariadb stop
+
+rm /run/mysqld/*
+
+/etc/init.d/mariadb start
 
 #

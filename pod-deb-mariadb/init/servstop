@@ -1,5 +1,5 @@
 #!/bin/sh
 
-/etc/init.d/mysql stop
+/etc/init.d/mariadb stop
 
 #
