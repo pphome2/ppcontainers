@@ -12,7 +12,7 @@ if [ ! -z "$c" ]; then
 	echo Már fut.
 else
 	podman start "$n"
-	echo Elindut.
+	echo Elindult.
 	c=`sudo podman ps | grep "$n" | awk 'BEGIN {FS=" "};{print $1}'`
 	if [ ! -z "$c" ]; then
 		echo $c >process.txt

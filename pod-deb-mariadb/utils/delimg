@@ -4,10 +4,10 @@ d=`pwd`
 cd ..
 
 n=`pwd | awk 'BEGIN {FS="/"};{printf $NF }'`
-pid=`podman images | grep "$n" | awk {'print '}`
+pid=`podman images | grep "$n" | awk {'print $1'}`
 
-if [ ! -z $pid ]; then
-	podman rmi $pid
+if [ ! -z "$pid" ]; then
+	podman rmi $n
 fi
 
 cd $d
