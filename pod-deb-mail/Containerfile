@@ -62,6 +62,9 @@ RUN chmod 777 /home/backupmail
 RUN mkdir /home/backupetc
 RUN /usr/local/bin/copyetc
 
+RUN rm /etc/localtime
+RUN ln -s /usr/share/zoneinfo/Europe/Budapest /etc/localtime
+
 ENTRYPOINT ["/usr/local/bin/start"]
 
 #

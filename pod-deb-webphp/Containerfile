@@ -44,6 +44,9 @@ RUN chmod +x /usr/local/bin/servstart
 RUN chmod +x /usr/local/bin/servstop
 RUN chmod +x /usr/local/bin/addapacheuser
 
+RUN rm /etc/localtime
+RUN ln -s /usr/share/zoneinfo/Europe/Budapest /etc/localtime
+
 ENTRYPOINT ["/usr/local/bin/start"]
 
 #CMD ["/bin/bash"]
